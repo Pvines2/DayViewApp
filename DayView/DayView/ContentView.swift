@@ -55,52 +55,75 @@ struct AddPersonView: View {
 struct ContentView: View {
     // Define IdentifiableDay to make Int conform to Identifiable
     struct IdentifiableDay: Identifiable {
-        let id: Int  // use day number as  unique identifier
+        let id: Int  // Use day number as a unique identifier
     }
 
-    // ViewModel for Firestore operations
+    // ViewModel for Firestore and authentication operations
     @ObservedObject var viewModel = DayViewViewModel()
+    @ObservedObject var authViewModel = AuthViewModel()
+
     @State private var showAddPersonSheet = false
     @State private var selectedDay: IdentifiableDay? = nil
 
     var body: some View {
         VStack {
-            // Month and Weather
-            VStack {
-                Text("November")  // placeholder: static month title
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                Text("Weather: 68°F, Cloudy")  // placeholder for dynamic weather data
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
-            .padding()
+            if authViewModel.user == nil {
+                // Show Login/Signup view if the user is not logged in
+                AuthView(authViewModel: authViewModel)
+            } else {
+                // Main App Interface
+                VStack {
+                    // Month and Weather
+                    VStack {
+                        Text("November")  // Placeholder: static month title
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                        Text("Weather: 68°F, Cloudy")  // Placeholder for dynamic weather data
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
 
-            // calendar layout
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 8) {
-                ForEach(1...30, id: \.self) { day in
-                    CalendarDayView(day: day)
-                        .onTapGesture {
-                            selectedDay = IdentifiableDay(id: day)
+                    // Calendar Layout
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 8) {
+                        ForEach(1...30, id: \.self) { day in
+                            CalendarDayView(day: day)
+                                .onTapGesture {
+                                    selectedDay = IdentifiableDay(id: day)
+                                }
                         }
+                    }
+                    .padding()
+
+                    Spacer()
+
+                    // Add Person Button
+                    Button(action: {
+                        showAddPersonSheet.toggle()
+                    }) {
+                        Text("Add Person")
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    .padding()
+
+                    // Log Out Button
+                    Button(action: {
+                        authViewModel.logOut()
+                    }) {
+                        Text("Log Out")
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    .padding()
                 }
             }
-            .padding()
-
-            Spacer()
-
-            // add person button
-            Button(action: {
-                showAddPersonSheet.toggle()
-            }) {
-                Text("Add Person")
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }
-            .padding()
         }
         .sheet(item: $selectedDay) { identifiableDay in
             DayDetailView(day: identifiableDay.id)
@@ -109,7 +132,9 @@ struct ContentView: View {
             AddPersonView(viewModel: viewModel)
         }
         .onAppear {
-            viewModel.fetchPersonnelData()  // fetch personnel data from Firestore
+            if authViewModel.user != nil {
+                viewModel.fetchPersonnelData()  // Fetch personnel data if logged in
+            }
         }
     }
 }
