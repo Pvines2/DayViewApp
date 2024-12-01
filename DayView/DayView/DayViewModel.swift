@@ -11,8 +11,8 @@ import FirebaseFirestore
 /* Defines model to represent our data from Firebase/
    We use Codable for encoding and decoding*/
 struct DayViewModel: Codable, Identifiable {
-    @DocumentID var id: String? //ocumentID tells firebase to assign this property the document ID from Firestore
-    var name: String? // '?' for Optional Variable
+    @DocumentID var id: String? //DocumentID tells firebase to assign this property the document ID from Firestore
+    var name: String?
     var date: String?
     var day: Int?
     var month: String?

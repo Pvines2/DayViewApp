@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC6B2E132CEAE0180041D9F4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC6B2E122CEAE0180041D9F4 /* FirebaseAuth */; };
 		EC9C99542CE6352B00E03411 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EC9C99532CE6352B00E03411 /* FirebaseAnalytics */; };
 		EC9C99562CE6352B00E03411 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EC9C99552CE6352B00E03411 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
@@ -15,9 +16,22 @@
 		EC9C993F2CE631EF00E03411 /* DayView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		EC7956132CFC0E20002B517C /* Exceptions for "DayView" folder in "DayView" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = EC9C993E2CE631EF00E03411 /* DayView */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		EC9C99412CE631EF00E03411 /* DayView */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EC7956132CFC0E20002B517C /* Exceptions for "DayView" folder in "DayView" target */,
+			);
 			path = DayView;
 			sourceTree = "<group>";
 		};
@@ -29,6 +43,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC9C99542CE6352B00E03411 /* FirebaseAnalytics in Frameworks */,
+				EC6B2E132CEAE0180041D9F4 /* FirebaseAuth in Frameworks */,
 				EC9C99562CE6352B00E03411 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +89,7 @@
 			packageProductDependencies = (
 				EC9C99532CE6352B00E03411 /* FirebaseAnalytics */,
 				EC9C99552CE6352B00E03411 /* FirebaseFirestore */,
+				EC6B2E122CEAE0180041D9F4 /* FirebaseAuth */,
 			);
 			productName = DayView;
 			productReference = EC9C993F2CE631EF00E03411 /* DayView.app */;
@@ -86,6 +102,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
@@ -266,7 +285,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DayView/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = DayView/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -294,7 +313,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DayView/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = DayView/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -347,6 +366,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EC6B2E122CEAE0180041D9F4 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC9C99522CE6352B00E03411 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		EC9C99532CE6352B00E03411 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EC9C99522CE6352B00E03411 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
